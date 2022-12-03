@@ -1,0 +1,4 @@
+<img width="200" [src]="img" alt="" *ngIf="img;else bloqueelse">
+<ng-template #bloqueelse>
+    <img width="200" src="https://picsum.photos/200" alt="">
+</ng-template>

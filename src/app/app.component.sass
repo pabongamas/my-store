@@ -1,0 +1,47 @@
+.box
+    height: 200px
+    width: 200px
+    overflow: auto
+    background: red
+
+.product--grid
+    display: flex
+    flex-direction: column
+    div 
+        img
+            width: 100%
+            border-radius: 10px
+        h2, p
+            margin: 0
+
+.message-error
+    background: red
+    color: white
+    opacity: 0
+    transition: all linear .5s
+    &.invalid
+        opacity: 1
+
+@media (min-width: 30em) and (max-width: 40em)
+    .product--grid
+        display: grid
+        grid-template-columns: repeat(4, 1fr)
+        grid-gap: 15px
+
+@media screen and (min-width: 40em)
+    .product--grid
+        display: grid
+        grid-template-columns: repeat(5, 1fr)
+        grid-gap: 15px
+
+.styles
+    display: grid
+    grid-template-columns: repeat(2,1fr)
+
+.line-error
+    height: 0
+    border-bottom: 1px solid 
+    &.invalid
+        border-color: red
+    &.valid
+        border-color: green
