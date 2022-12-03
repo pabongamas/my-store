@@ -1,5 +1,5 @@
 <p><input type="text" [(ngModel)]="imgParent"></p>
-<app-img [img]="imgParent">"</app-img>
+<app-img (loaded)="onLoaded($event)" [img]="imgParent">"</app-img>
 
 <h1>Formulario</h1>
 <form (ngSubmit)="onRegister()" #myForm="ngForm">

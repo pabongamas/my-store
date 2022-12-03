@@ -9,6 +9,7 @@ import { Product } from './product.model';
 })
 export class AppComponent {
   imgParent='';
+  
   widthImg=10;
   name = 'Jhon';
   age=26;
@@ -89,5 +90,7 @@ export class AppComponent {
   onRegister(){
     console.log(this.register);
   }
-
+  onLoaded(img: string){
+    console.log('log padre',img);
+  }
 }
