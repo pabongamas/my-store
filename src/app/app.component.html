@@ -1,6 +1,11 @@
-<p><input type="text" [(ngModel)]="imgParent"></p>
-<app-img (loaded)="onLoaded($event)" [img]="imgParent">"</app-img>
-
+<!-- <p><input type="text" [(ngModel)]="imgParent"></p>
+<button (click)="toggleImg()">Toggle Img</button>
+<p>{{showImg}}</p>
+<app-img *ngIf="showImg" (loaded)="onLoaded($event)" [img]="imgParent">"</app-img> -->
+<br>
+<hr/>
+<app-nav></app-nav>
+<app-products></app-products>
 <h1>Formulario</h1>
 <form (ngSubmit)="onRegister()" #myForm="ngForm">
   <div class="input.group">
@@ -72,13 +77,13 @@
 </div>
 <hr />
 <h1>*ngFor Objs</h1>
-<div class="product--grid">
+<!-- <div class="product--grid">
   <div *ngFor="let product of products">
     <img [src]="product.image" alt="image">
     <h2>{{product.price}}</h2>
     <p>{{product.name}}</p>
   </div>
-</div>
+</div> -->
 <hr />
 <h1>*ngFor</h1>
 <input type="text" required [(ngModel)]="newName" />

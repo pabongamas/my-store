@@ -1,4 +1,5 @@
-<img width="200" (load)="imgLoaded()" (error)="imgError()" [src]="img" alt="" *ngIf="img;else bloqueelse">
+<img  (load)="imgLoaded()" (error)="imgError()" [src]="img" alt="" *ngIf="img;else bloqueelse">
+<!-- <h3>{{counter}}</h3> -->
 <ng-template #bloqueelse>
     <img [src]="imageDefault" alt="">
 </ng-template>
