@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Product} from '../../models/product.model';
-import {StoreService} from '../../services/store.service'
-import {ProductsService} from '../../services/products.service'
+import { Product } from '../../models/product.model';
+import { ProductsService } from '../../services/products.service';
+import { StoreService } from '../../services/store.service';
 
 @Component({
   selector: 'app-products',
@@ -40,6 +40,18 @@ export class ProductsComponent implements OnInit {
   //   },
   // ];
   products:Product[]=[];
+  showProductDetail=false;
+  productChosen:Product={
+    id:'',
+    price:0,
+    images:[],
+    title:'',
+    category:{
+      id:'',
+      name:'',
+    },
+    description:''
+  };
   today= new Date();
   date =new Date(2021,1,21)
   constructor(
@@ -61,5 +73,14 @@ export class ProductsComponent implements OnInit {
     this.total=this.storeService.getTotal();
     // this.total=this.myShoppingCart.reduce((sum,item)=>sum+item.price,0);
   }
-
+  toggleProductDetail(){
+    this.showProductDetail=!this.showProductDetail;
+  }
+  onShowDetail(id:string){
+    this.ProductsService.getProduct(id).subscribe(data=>{
+      this.toggleProductDetail();
+      this.productChosen=data;
+    })
+  }
 }
+
