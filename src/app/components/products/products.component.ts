@@ -52,6 +52,8 @@ export class ProductsComponent implements OnInit {
     },
     description:''
   };
+  limit=10;
+  offset=0;
   today= new Date();
   date =new Date(2021,1,21)
   constructor(
@@ -62,10 +64,15 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.ProductsService.getAllProducts()
+    // este es para obtener todos los productos
+    // this.ProductsService.getAllProducts()
+    // este es para obtener paginado los registros 
+  /*   this.ProductsService.getAllProductsByPage(5,0)
     .subscribe(data=>{
       this.products=data;
-    });
+      this.offset+=this.limit;
+    }); */
+    this.loadMore();
   }
   onAddToShoppingCart(product:Product){
     // this.myShoppingCart.push(product);
@@ -118,6 +125,13 @@ export class ProductsComponent implements OnInit {
       this.showProductDetail=false;
     });
 
+  }
+  loadMore(){
+    this.ProductsService.getAllProducts(this.limit,this.offset)
+    .subscribe(data=>{
+      this.products=this.products.concat(data); 
+      this.offset+=this.limit;
+    });
   }
 }
 
