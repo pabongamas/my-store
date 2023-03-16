@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { retry } from 'rxjs/operators';
 
 import {
   CreateProductDTO,
@@ -22,7 +23,12 @@ export class ProductsService {
       params=params.set('limit',limit);
       params=params.set('offset',offset);
     }
-    return this.http.get<Product[]>(this.apiUrl,{params});
+    return this.http.get<Product[]>(this.apiUrl,{params})
+    /* esto es para reintenar por si una peticion falla ,el 3 es el numero de veces que reintenta , se requier
+    importar el retry */
+   /*  .pipe(
+      retry(3)
+    ); */
   }
   getAllProductsByPage(limit: number, offset: number) {
     return this.http.get<Product[]>(this.apiUrl, {
