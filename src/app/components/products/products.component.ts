@@ -54,6 +54,7 @@ export class ProductsComponent implements OnInit {
   };
   limit=10;
   offset=0;
+  statusDetail:'loading'|'success'|'error'|'init'='init';
   today= new Date();
   date =new Date(2021,1,21)
   constructor(
@@ -84,9 +85,15 @@ export class ProductsComponent implements OnInit {
     this.showProductDetail=!this.showProductDetail;
   }
   onShowDetail(id:string){
+    this.statusDetail='loading';
+    this.toggleProductDetail();
     this.ProductsService.getProduct(id).subscribe(data=>{
-      this.toggleProductDetail();
+    
       this.productChosen=data;
+      this.statusDetail='success';
+    },errorMsg=>{
+      window.alert(errorMsg);
+      this.statusDetail='error';
     })
   }
 
