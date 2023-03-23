@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { switchMap } from 'rxjs/operators';
+import { zip } from 'rxjs';
 import { Product,CreateProductDTO, UpdateProductDTO } from '../../models/product.model';
 import { ProductsService } from '../../services/products.service';
 import { StoreService } from '../../services/store.service';
@@ -94,6 +96,35 @@ export class ProductsComponent implements OnInit {
     },errorMsg=>{
       window.alert(errorMsg);
       this.statusDetail='error';
+    })
+  }
+
+  // todo este tema es de callballHell 
+  readAndUpdate(id:string){
+
+    this.ProductsService.getProduct(id)
+    .pipe(
+      switchMap((product)=> this.ProductsService.update(product.id,{title:'change'}))
+      // esto evita el callback hell ,hace peticiones despues de otra 
+      // switchMap((product)=> this.ProductsService.update(product.id,{title:'change'}))
+      // switchMap((product)=> this.ProductsService.update(product.id,{title:'change'}))
+
+    )
+    .subscribe(data=>{
+      console.log(data);
+    })
+
+    // con este puedo enviarlas ala vez y obtengo los datos en un array
+    // esto es mejor hacerlo en el service
+    zip(
+      this.ProductsService.getProduct(id),
+      this.ProductsService.update(id,{title :'nuevo'})
+    )
+    .subscribe(response=>{
+      const read =response[0];
+      const update =response[1];
+
+
     })
   }
 
