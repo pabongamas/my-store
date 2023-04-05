@@ -27,15 +27,13 @@ export class NavComponent implements OnInit {
     this.activeMenu=!this.activeMenu;
   }
   login(){
-    this.AuthService.login('jhoncito@gmail.com','123456789')
-    .subscribe(rta=>{
-      console.log(rta.access_token);
-      this.token=rta.access_token;
-      this.getProfile();
+    this.AuthService.loginAndGet('jhoncito@gmail.com','123456789')
+    .subscribe(user=>{
+      this.profile=user;
     });
   }
   getProfile(){
-    this.AuthService.profile(this.token)
+    this.AuthService.profile()
     .subscribe(profile=>{
       console.log(profile);
       this.profile=profile;
