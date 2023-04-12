@@ -5,16 +5,16 @@
 <br>
 <hr/>
 <app-nav></app-nav>
-<button (click)="createUser()">Create User</button>
+<!-- <button (click)="createUser()">Create User</button>
 <p>
   <button (click)="downloadPdf()">Descargar pdf</button>
 </p>
 <p>
   <input type="file" (change)="onUpload($event)" name="" id="">
   <img *ngIf="imgRta" [src]="imgRta" alt="">
-</p>
+</p> -->
 <app-products></app-products>
-<h1>Formulario</h1>
+<!-- <h1>Formulario</h1>
 <form (ngSubmit)="onRegister()" #myForm="ngForm">
   <div class="input.group">
     <label for="name">Nombre</label>
@@ -75,9 +75,9 @@
 <hr />
 <h1>ngSwitch</h1>
 <input type="text" required [(ngModel)]="person.name" />
-<!-- <p *ngIf="person.name=='jhon'">Soy jhon</p>
+ <p *ngIf="person.name=='jhon'">Soy jhon</p>
 <p *ngIf="person.name=='carlos'">Soy carlos</p>
-<p *ngIf="person.name=='manuel'">Soy manuel</p> -->
+<p *ngIf="person.name=='manuel'">Soy manuel</p> 
 <div [ngSwitch]="person.name">
   <p *ngSwitchCase="'jhon'">Soy jhon</p>
   <p *ngSwitchCase="'carlos'">Soy carlos</p>
@@ -85,13 +85,13 @@
 </div>
 <hr />
 <h1>*ngFor Objs</h1>
-<!-- <div class="product--grid">
+ <div class="product--grid">
   <div *ngFor="let product of products">
     <img [src]="product.image" alt="image">
     <h2>{{product.price}}</h2>
     <p>{{product.name}}</p>
   </div>
-</div> -->
+</div>
 <hr />
 <h1>*ngFor</h1>
 <input type="text" required [(ngModel)]="newName" />
@@ -144,4 +144,4 @@
 <h2>{{'Hola mundo'.repeat(4)}}</h2>
 <p>3+3={{3+3}}</p>
 <h3>hola soy {{name}} y tengo {{age}} años</h3>
-<img width="200" src={{person.avatar}} alt="image">
+<img width="200" src={{person.avatar}} alt="image"> -->
