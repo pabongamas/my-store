@@ -23,6 +23,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { RecoveryComponent } from './pages/recovery/recovery.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { AppRoutingModule } from './app-routing.module';
 
 
 
@@ -50,7 +51,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    SwiperModule
+    SwiperModule,
+    AppRoutingModule
   ],
   providers: [
     {provide:HTTP_INTERCEPTORS,useClass:TimeInterceptor,multi:true},
