@@ -16,7 +16,7 @@ import { environment } from './../../environments/environment';
   providedIn: 'root',
 })
 export class ProductsService {
-  private apiUrl = environment.API_URL+'https://damp-spire-59848.herokuapp.com/api';
+  private apiUrl = environment.API_URL+'/api';
 
   constructor(private http: HttpClient) {}
 
@@ -70,6 +70,23 @@ export class ProductsService {
       return throwError('ups algo salio mal');
     })
     );
+  }
+  getOne(id: string) {
+    return this.http.get<Product>(`${this.apiUrl}/products/${id}`)
+    .pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === HttpStatusCode.Conflict) {
+          return throwError('Algo esta fallando en el server');
+        }
+        if (error.status === HttpStatusCode.NotFound) {
+          return throwError('El producto no existe');
+        }
+        if (error.status === HttpStatusCode.Unauthorized) {
+          return throwError('No estas permitido');
+        }
+        return throwError('Ups algo salio mal');
+      })
+    )
   }
 
   create(data: CreateProductDTO) {

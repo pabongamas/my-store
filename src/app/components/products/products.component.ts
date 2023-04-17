@@ -45,6 +45,13 @@ export class ProductsComponent{
   //   },
   // ];
   @Input() products: Product[] = [];
+  // @Input() productId:string | null=null;
+  @Input() 
+  set productId(id:string | null){
+    if(id){
+      this.onShowDetail(id);
+    }
+  }
   showProductDetail = false;
   productChosen: Product = {
     id: '',
@@ -91,6 +98,10 @@ export class ProductsComponent{
   }
   onShowDetail(id: string) {
     this.statusDetail = 'loading';
+    this.showProductDetail=false;
+    // if(!this.showProductDetail){
+    //   this.showProductDetail=true;
+    // }
     this.toggleProductDetail();
     this.ProductsService.getProduct(id).subscribe(
       (data) => {
