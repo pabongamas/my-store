@@ -14,7 +14,7 @@ import { HomeComponent } from './pages/home/home.component';
 const routes: Routes = [
   {path:'',redirectTo:'/home',pathMatch:'full'},
   {path:'home',component:HomeComponent},
-  {path:'category',component:CategoryComponent},
+  {path:'category/:id',component:CategoryComponent},
   {
     path: 'my-cart',
     component: MycartComponent

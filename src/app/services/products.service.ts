@@ -16,7 +16,7 @@ import { environment } from './../../environments/environment';
   providedIn: 'root',
 })
 export class ProductsService {
-  private apiUrl = environment.API_URL+'https://young-sands-07814.herokuapp.com/api/products';
+  private apiUrl = environment.API_URL+'https://damp-spire-59848.herokuapp.com/api';
 
   constructor(private http: HttpClient) {}
 
@@ -27,7 +27,7 @@ export class ProductsService {
       params=params.set('limit',limit);
       params=params.set('offset',offset);
     }
-    return this.http.get<Product[]>(this.apiUrl,{params,context:checkTime()})
+    return this.http.get<Product[]>(this.apiUrl+"/products",{params,context:checkTime()})
     /* esto es para reintenar por si una peticion falla ,el 3 es el numero de veces que reintenta , se requier
     importar el retry */
     // el map se utilizo para ranformar la peticion con datos que retorna el backend 
@@ -40,12 +40,23 @@ export class ProductsService {
   
   }
   getAllProductsByPage(limit: number, offset: number) {
-    return this.http.get<Product[]>(this.apiUrl, {
+    return this.http.get<Product[]>(this.apiUrl+"/products", {
       params: { limit, offset },
     });
   }
+
+  getBycategory(categoryId:string,limit?:number, offset?:number){
+    let params = new HttpParams();
+    if (limit !== undefined && offset !== undefined) {
+      params=params.set('limit',limit);
+      params=params.set('offset',offset);
+    }
+    return this.http.get<Product[]>(this.apiUrl+"/categories/"+categoryId+"/products",{params})
+  }
+
+
   getProduct(id: string) {
-    return this.http.get<Product>(this.apiUrl + '/' + id)
+    return this.http.get<Product>(this.apiUrl + '/products/' + id)
     .pipe(catchError((error:HttpErrorResponse)=>{
       if(error.status===HttpStatusCode.Conflict){
         return throwError('algo esta fallando en el server');
@@ -62,12 +73,12 @@ export class ProductsService {
   }
 
   create(data: CreateProductDTO) {
-    return this.http.post<Product>(this.apiUrl, data);
+    return this.http.post<Product>(this.apiUrl+"/products", data);
   }
   update(id: string, dto: UpdateProductDTO) {
-    return this.http.put<Product>(this.apiUrl + '/' + id, dto);
+    return this.http.put<Product>(this.apiUrl + '/products/' + id, dto);
   }
   delete(id: string) {
-    return this.http.delete<boolean>(this.apiUrl + '/' + id);
+    return this.http.delete<boolean>(this.apiUrl + '/products/' + id);
   }
 }

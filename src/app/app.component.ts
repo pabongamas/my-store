@@ -92,7 +92,7 @@ export class AppComponent {
     });
   }
   downloadPdf(){
-    this.FilesService.getFile('my.pdf','https://young-sands-07814.herokuapp.com/api/files/dummy.pdf','application/pdf')
+    this.FilesService.getFile('my.pdf','https://damp-spire-59848.herokuapp.com/api/files/dummy.pdf','application/pdf')
     .subscribe()
   }
   onUpload(event:Event){

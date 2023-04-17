@@ -10,7 +10,7 @@ import { switchMap, tap } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = environment.API_URL+'https://young-sands-07814.herokuapp.com/api/auth';
+  private apiUrl = environment.API_URL+'https://damp-spire-59848.herokuapp.com/api/auth';
   constructor(
     private http: HttpClient,
     private TokenService:TokenService
