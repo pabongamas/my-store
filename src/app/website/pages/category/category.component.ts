@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ProductsService } from './../../services/products.service';
+import { ProductsService } from '../../../services/products.service';
 import { switchMap } from 'rxjs';
 
-import { Product } from '../../models/product.model';
+import { Product } from '../../../models/product.model';
 
 @Component({
   selector: 'app-category',
@@ -13,6 +13,7 @@ import { Product } from '../../models/product.model';
 export class CategoryComponent implements OnInit {
   products: Product[] = [];
   categoryId: string | null = null;
+  productId:string |null=null;
   limit = 10;
   offset = 0;
   constructor(
@@ -54,6 +55,10 @@ export class CategoryComponent implements OnInit {
         this.products = data;
         this.offset += this.limit;
       });
+      this.route.queryParamMap.subscribe(params=>{
+        this.productId=params.get('product');
+        console.log(this.productId);
+      })
   }
 
   loadMore(): void {
