@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
+import {QuicklinkModule} from 'ngx-quicklink'
 
 import { AppComponent } from './app.component';
 import { TodoComponent } from './todo/todo.component';
@@ -21,7 +22,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     BrowserModule,
     HttpClientModule,
     FormsModule,  
-    AppRoutingModule
+    AppRoutingModule,
+    QuicklinkModule
   ],
   providers: [
     {provide:HTTP_INTERCEPTORS,useClass:TimeInterceptor,multi:true},

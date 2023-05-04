@@ -3,12 +3,16 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router'
 
 import { NotFoundComponent } from './not-found/not-found.component';
+import {QuicklinkStrategy} from 'ngx-quicklink'
 
 const routes: Routes = [
   // {path:'',redirectTo:'/home',pathMatch:'full'},
   {
     path:'',
-    loadChildren:()=>import('./website/website.module').then(m=>m.WebsiteModule)
+    loadChildren:()=>import('./website/website.module').then(m=>m.WebsiteModule),
+    data:{
+      preload:true
+    }
   },
   {
     path:'cms',
@@ -23,7 +27,9 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [],
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{
+    preloadingStrategy:QuicklinkStrategy
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
