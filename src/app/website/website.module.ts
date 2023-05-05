@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SwiperModule } from 'swiper/angular';
-
+import {QuicklinkModule} from 'ngx-quicklink'
 
 
 import { NavComponent } from './components/nav/nav.component';
@@ -40,7 +40,8 @@ import {SharedModule} from './../shared/shared.module';
     CommonModule,
     WebsiteRoutingModule,
     SwiperModule,
-    SharedModule
+    SharedModule,
+    QuicklinkModule
   ],
   providers: [
     {provide:HTTP_INTERCEPTORS,useClass:TimeInterceptor,multi:true},
