@@ -16,8 +16,9 @@ const routes: Routes = [
     {path:'',redirectTo:'/home',pathMatch:'full'},
     {path:'home',component:HomeComponent},
     {
-      path:'category',
-      loadChildren:()=>import('./pages/category/category.module').then(m=>m.CategoryModule), data: {
+      path: 'category',
+      loadChildren: () => import('./pages/category/category.module').then(m => m.CategoryModule),
+      data: {
         preload: true,
       }
     },
