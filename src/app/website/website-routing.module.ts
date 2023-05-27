@@ -11,6 +11,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import {AuthGuard} from './../guards/auth.guard'
+import {ExitGuard} from './../guards/exit.guard'
+
 const routes: Routes = [
   {path:'',component:LayoutComponent,children:[
     {path:'',redirectTo:'/home',pathMatch:'full'},
@@ -33,6 +35,7 @@ const routes: Routes = [
     },
     {
       path: 'register',
+      canDeactivate:[ExitGuard],
       component: RegisterComponent
     },
     {
